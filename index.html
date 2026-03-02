@@ -9,86 +9,82 @@
 
 <body>
 
-    <header>
-        <h1>Formation Full Stack Moderne</h1>
-        <p>Express ESM • MySQL • React • Axios • Zod • React Hook Form</p>
-    </header>
+<header>
+    <h1>Formation Full Stack Moderne</h1>
+    <p>Express ESM • MySQL • React • Axios • Zod • React Hook Form</p>
+</header>
 
-    <nav>
-        <button onclick="showSection('architecture')">Architecture</button>
-        <button onclick="showSection('express')">Express</button>
-        <button onclick="showSection('zod')">Zod</button>
-        <button onclick="showSection('mysql')">MySQL</button>
-        <button onclick="showSection('react')">React</button>
-        <button onclick="showSection('integration')">Intégration</button>
-        <button onclick="showSection('exercice')">Exercice</button>
-    </nav>
+<nav>
+    <button onclick="showSection('architecture')">Architecture</button>
+    <button onclick="showSection('express')">Express</button>
+    <button onclick="showSection('zod')">Zod</button>
+    <button onclick="showSection('mysql')">MySQL</button>
+    <button onclick="showSection('react')">React</button>
+    <button onclick="showSection('integration')">Intégration</button>
+    <button onclick="showSection('security')">Sécurité</button>
+    <button onclick="showSection('exercice')">Exercices</button>
+</nav>
 
-    <main>
+<main>
 
-        <!-- ================= ARCHITECTURE ================= -->
+<!-- ================= ARCHITECTURE ================= -->
 
-        <section id="architecture" class="section architecture">
+<section id="architecture" class="section architecture">
 
-            <h2>Architecture Générale</h2>
+    <h2>Architecture Générale</h2>
 
-            <h3>1. Vision globale</h3>
-            <p>Le frontend envoie une requête HTTP vers le backend.
-                Le backend valide, traite et communique avec la base de données.</p>
+    <h3>1. Vision globale détaillée</h3>
+    <p>Le frontend collecte les données utilisateur et les envoie au backend via HTTP. Le backend valide, traite et communique avec la base de données. Chaque couche a une responsabilité unique pour faciliter maintenance et évolutivité.</p>
 
-            <h3>2. Flux complet</h3>
-            <ol>
-                <li>Utilisateur remplit formulaire</li>
-                <li>Validation frontend (Zod)</li>
-                <li>Envoi HTTP (Axios)</li>
-                <li>Validation backend (Zod)</li>
-                <li>Insertion MySQL</li>
-                <li>Réponse JSON</li>
-            </ol>
+    <h3>2. Flux complet</h3>
+    <ol>
+        <li>Utilisateur remplit le formulaire</li>
+        <li>Validation frontend avec Zod pour feedback immédiat</li>
+        <li>Envoi de la requête HTTP via Axios</li>
+        <li>Validation backend avec Zod pour sécurité</li>
+        <li>Insertion sécurisée dans MySQL via requêtes préparées</li>
+        <li>Réponse JSON renvoyée au frontend</li>
+    </ol>
 
-            <h3>3. Séparation des responsabilités</h3>
-            <ul>
-                <li>React → Interface utilisateur</li>
-                <li>Express → API serveur</li>
-                <li>Zod → Validation</li>
-                <li>MySQL → Stockage</li>
-            </ul>
+    <h3>3. Séparation des responsabilités détaillée</h3>
+    <ul>
+        <li>React → interface utilisateur et gestion état</li>
+        <li>Express → logique métier et routes API</li>
+        <li>Zod → validation cohérente des données</li>
+        <li>MySQL → persistance sécurisée</li>
+        <li>Axios → communication entre front et back</li>
+    </ul>
 
-            <h3>4. Pourquoi doubler la validation</h3>
-            <p>Frontend pour l’expérience utilisateur.
-                Backend pour la sécurité.</p>
+    <h3>4. Pourquoi doubler la validation</h3>
+    <p>Frontend pour expérience utilisateur et correction rapide, backend pour empêcher toute donnée invalide d’atteindre la base.</p>
 
-            <h3>5. Architecture logique simplifiée</h3>
-            <p>Client → API → Base de données</p>
+    <h3>5. Architecture logique simplifiée</h3>
+    <p>Client → API → Base de données. Cette structure permet de séparer UI, logique et données.</p>
 
-            <h3>6. Objectif pédagogique</h3>
-            <p>Comprendre chaque couche indépendamment puis ensemble.</p>
+    <h3>6. Objectif pédagogique</h3>
+    <p>Comprendre chaque couche isolément, puis voir comment elles s’articulent pour créer une application sécurisée et maintenable.</p>
 
-        </section>
+</section>
 
-        <!-- ================= EXPRESS ================= -->
+<!-- ================= EXPRESS ================= -->
 
-        <section id="express" class="section express hidden">
+<section id="express" class="section express hidden">
 
-            <h2>Express - Création du serveur</h2>
+    <h2>Express - Création du serveur</h2>
 
-            <h3>1. Rôle technique</h3>
-            <p>Créer une API REST capable de recevoir et renvoyer du JSON.</p>
+    <h3>1. Rôle technique détaillé</h3>
+    <p>Express crée une API REST pour recevoir et renvoyer des données JSON, centralisant la logique métier et les routes.</p>
 
-            <h3>2. Activation du mode ESM</h3>
+    <h3>2. Activation du mode ESM</h3>
 
-            <pre><code>
-{
+    <pre><code>{
   "type": "module"
-}
-</code></pre>
+}</code></pre>
+    <p>Permet d’utiliser les import/export modernes dans Node.js.</p>
 
-            <p>Permet d'utiliser import/export.</p>
+    <h3>3. Serveur minimal</h3>
 
-            <h3>3. Serveur minimal</h3>
-
-            <pre><code>
-import express from "express";
+    <pre><code>import express from "express";
 
 const app = express();
 
@@ -98,261 +94,317 @@ app.get("/", (req, res) => {
   res.send("API active");
 });
 
-app.listen(3000);
-</code></pre>
+app.listen(3000);</code></pre>
 
-            <h3>4. Explication simplifiée</h3>
-            <ul>
-                <li>import → charge Express</li>
-                <li>express() → crée serveur</li>
-                <li>use() → active lecture JSON</li>
-                <li>get() → crée route</li>
-                <li>listen() → démarre serveur</li>
-            </ul>
+    <h3>4. Explication simplifiée et bonnes pratiques</h3>
+    <ul>
+        <li>import → charge Express</li>
+        <li>express() → crée le serveur</li>
+        <li>use(express.json()) → middleware pour parser JSON</li>
+        <li>get() → route simple pour test serveur</li>
+        <li>listen() → démarre le serveur sur port défini</li>
+        <li>Bonne pratique : logger chaque requête pour debug</li>
+    </ul>
 
-            <h3>5. Route POST structurée</h3>
+    <h3>5. Route POST structurée</h3>
 
-            <pre><code>
-app.post("/users", (req, res) => {
+    <pre><code>app.post("/users", (req, res) => {
   console.log(req.body);
   res.json({ message: "Reçu" });
-});
-</code></pre>
+});</code></pre>
 
-            <h3>6. Vision architecture</h3>
-            <p>Express est la couche contrôleur entre client et base.</p>
+    <h3>6. Vision architecture</h3>
+    <p>Express agit comme couche contrôleur, médiant entre frontend et base de données, permettant une gestion centralisée de la sécurité et des erreurs.</p>
 
-        </section>
+</section>
 
-        <!-- ================= ZOD ================= -->
+<!-- ================= ZOD ================= -->
 
-        <section id="zod" class="section zod hidden">
+<section id="zod" class="section zod hidden">
 
-            <h2>Zod - Validation des données</h2>
+    <h2>Zod - Validation des données</h2>
 
-            <h3>1. Pourquoi valider</h3>
-            <p>Les données utilisateur sont imprévisibles.</p>
+    <h3>1. Pourquoi valider</h3>
+    <p>Les utilisateurs peuvent envoyer des données inattendues. Validation indispensable pour éviter corruption de la base et erreurs serveur.</p>
 
-            <h3>2. Définition d’un schéma</h3>
+    <h3>2. Définition d’un schéma</h3>
 
-            <pre><code>
-import { z } from "zod";
+    <pre><code>import { z } from "zod";
 
 const schema = z.object({
-  name: z.string().min(2),
-  email: z.string().email()
-});
-</code></pre>
+  name: z.string().min(2, "Nom trop court"),
+  email: z.string().email("Email invalide")
+});</code></pre>
 
-            <h3>3. Comprendre les règles</h3>
-            <ul>
-                <li>string → texte</li>
-                <li>min(2) → longueur minimale</li>
-                <li>email() → format valide</li>
-            </ul>
+    <h3>3. Validation sécurisée</h3>
 
-            <h3>4. Validation sécurisée</h3>
-
-            <pre><code>
-const result = schema.safeParse(req.body);
+    <pre><code>const result = schema.safeParse(req.body);
 
 if(!result.success){
   return res.status(400).json(result.error);
-}
-</code></pre>
+}</code></pre>
 
-            <h3>5. Différence parse / safeParse</h3>
-            <ul>
-                <li>parse → déclenche erreur</li>
-                <li>safeParse → retourne objet résultat</li>
-            </ul>
+    <h3>4. Différence parse / safeParse</h3>
+    <ul>
+        <li>parse → lance une exception si invalide</li>
+        <li>safeParse → renvoie objet avec success=true/false, pas de crash serveur</li>
+    </ul>
 
-            <h3>6. Intérêt stratégique</h3>
-            <p>Évite d’envoyer des données corrompues en base.</p>
+    <h3>5. Intérêt stratégique</h3>
+    <p>Prévenir l’insertion de données incorrectes et standardiser le format côté backend et frontend.</p>
 
-        </section>
+</section>
 
-        <!-- ================= MYSQL ================= -->
+<!-- ================= MYSQL ================= -->
 
-        <section id="mysql" class="section mysql hidden">
+<section id="mysql" class="section mysql hidden">
 
-            <h2>MySQL - Gestion des données</h2>
+    <h2>MySQL - Gestion des données</h2>
 
-            <h3>1. Rôle</h3>
-            <p>Stocker les données validées.</p>
+    <h3>1. Rôle</h3>
+    <p>Stocker de manière fiable et sécurisée les données validées.</p>
 
-            <h3>2. Connexion via pool</h3>
+    <h3>2. Connexion via pool</h3>
 
-            <pre><code>
-import mysql from "mysql2/promise";
+    <pre><code>import mysql from "mysql2/promise";
 
 const pool = mysql.createPool({
   host:"localhost",
   user:"root",
   password:"password",
   database:"test"
-});
-</code></pre>
+});</code></pre>
 
-            <h3>3. Pourquoi un pool</h3>
-            <p>Optimisation des connexions.</p>
+    <h3>3. Requête sécurisée</h3>
 
-            <h3>4. Requête sécurisée</h3>
-
-            <pre><code>
-await pool.query(
+    <pre><code>await pool.query(
  "INSERT INTO users (name,email) VALUES (?,?)",
  [name,email]
-);
-</code></pre>
+);</code></pre>
 
-            <h3>5. Pourquoi les ?</h3>
-            <p>Protection contre injection SQL.</p>
+    <h3>4. Pourquoi les ?</h3>
+    <p>Évite l’injection SQL et protège les données sensibles.</p>
 
-            <h3>6. Cycle BDD</h3>
-            <ol>
-                <li>Connexion</li>
-                <li>Exécution</li>
-                <li>Retour résultat</li>
-            </ol>
+    <h3>5. Cycle BDD</h3>
+    <ol>
+        <li>Connexion</li>
+        <li>Exécution requête préparée</li>
+        <li>Retour des résultats</li>
+    </ol>
 
-        </section>
+    <h3>6. Bonnes pratiques</h3>
+    <ul>
+        <li>Ne jamais exposer les informations de connexion côté frontend</li>
+        <li>Logger erreurs de manière contrôlée</li>
+        <li>Valider les données avant insertion</li>
+    </ul>
 
-        <!-- ================= REACT ================= -->
+</section>
 
-        <section id="react" class="section react hidden">
+<!-- ================= REACT ================= -->
 
-            <h2>React Hook Form + Zod</h2>
+<section id="react" class="section react hidden">
 
-            <h3>1. Problème classique</h3>
-            <p>Gestion complexe des états dans les formulaires.</p>
+    <h2>React Hook Form + Zod</h2>
 
-            <h3>2. Solution performante</h3>
-            <p>React Hook Form limite les re-renders.</p>
+    <h3>1. Gestion des formulaires</h3>
+    <p>Permet de gérer les états et la validation de formulaires complexes sans re-render excessif.</p>
 
-            <h3>3. Schéma Zod côté frontend</h3>
+    <h3>2. Schéma Zod côté frontend</h3>
 
-            <pre><code>
-const schema = z.object({
-  name: z.string().min(2),
-  email: z.string().email()
-});
-</code></pre>
+    <pre><code>const schema = z.object({
+  name: z.string().min(2, "Nom trop court"),
+  email: z.string().email("Email invalide")
+});</code></pre>
 
-            <h3>4. Formulaire complet</h3>
+    <h3>3. Formulaire complet</h3>
 
-            <pre><code>
-const { register, handleSubmit, formState:{errors} } =
+    <pre><code>const { register, handleSubmit, formState:{errors} } =
 useForm({ resolver: zodResolver(schema) });
 
-const onSubmit = data => console.log(data);
-</code></pre>
+const onSubmit = data => console.log(data);</code></pre>
 
-            <h3>5. Comprendre chaque élément</h3>
-            <ul>
-                <li>useForm → moteur</li>
-                <li>register → connecte input</li>
-                <li>handleSubmit → contrôle validation</li>
-                <li>errors → affiche erreur</li>
-            </ul>
+    <h3>4. Comprendre chaque élément</h3>
+    <ul>
+        <li>useForm → moteur de formulaire</li>
+        <li>register → relie input au formulaire</li>
+        <li>handleSubmit → déclenche validation et soumission</li>
+        <li>errors → messages d’erreur</li>
+    </ul>
 
-            <h3>6. Objectif UX</h3>
-            <p>Valider avant envoi serveur.</p>
+    <h3>5. Objectif UX</h3>
+    <p>Valider côté frontend pour retour rapide, sans se substituer à la validation backend.</p>
 
-        </section>
+</section>
+<!-- ================= INTEGRATION ================= -->
 
-        <!-- ================= INTEGRATION ================= -->
+<section id="integration" class="section integration hidden">
 
-        <section id="integration" class="section integration hidden">
+    <h2>Intégration complète avec Axios</h2>
 
-            <h2>Intégration complète avec Axios</h2>
+    <h3>1. Création d'une instance Axios</h3>
+    <p>L'instance Axios permet de centraliser la configuration pour toutes les requêtes HTTP. Cela facilite les modifications et assure cohérence dans toutes les requêtes.</p>
+    <pre><code>import axios from "axios";
 
-            <h3>1. Création instance</h3>
-
-            <pre><code>
-import axios from "axios";
-
+// Création d'une instance avec baseURL
 const api = axios.create({
- baseURL:"http://localhost:3000"
-});
-</code></pre>
+ baseURL: "http://localhost:3000", // URL du backend
+ timeout: 5000, // délai maximum avant timeout
+ headers: {
+   "Content-Type": "application/json" // définit le type de données
+ }
+});</code></pre>
+    <ul>
+        <li><strong>baseURL :</strong> point d'entrée de votre API</li>
+        <li><strong>timeout :</strong> évite que la requête bloque trop longtemps</li>
+        <li><strong>headers :</strong> standardisation des entêtes HTTP</li>
+    </ul>
 
-            <h3>2. Envoi POST</h3>
+    <h3>2. Envoi POST pas à pas</h3>
+    <p>Exemple d'envoi de données vers le backend avec gestion des erreurs.</p>
+    <pre><code>try {
+  const response = await api.post("/users", {
+    name: "Alice",
+    email: "alice@example.com"
+  });
 
-            <pre><code>
-await api.post("/users", data);
-</code></pre>
+  console.log("Réponse serveur :", response.data);
 
-            <h3>3. Cycle complet</h3>
-            <ol>
-                <li>Submit</li>
-                <li>Axios envoie</li>
-                <li>Express valide</li>
-                <li>MySQL insère</li>
-                <li>Réponse JSON</li>
-            </ol>
+} catch (error) {
+  if (error.response) {
+    // Le serveur a répondu avec un code d'erreur
+    console.error("Erreur serveur :", error.response.status, error.response.data);
+  } else if (error.request) {
+    // La requête a été envoyée mais pas de réponse
+    console.error("Pas de réponse du serveur", error.request);
+  } else {
+    // Erreur lors de la configuration de la requête
+    console.error("Erreur Axios :", error.message);
+  }
+}</code></pre>
+    <ul>
+        <li><strong>try/catch :</strong> gestion globale des erreurs côté frontend</li>
+        <li><strong>error.response :</strong> erreur renvoyée par le serveur</li>
+        <li><strong>error.request :</strong> aucune réponse reçue</li>
+        <li>Permet d’afficher un message utilisateur approprié</li>
+    </ul>
 
-            <h3>4. Gestion erreur</h3>
-            <p>Afficher message si status 400.</p>
+    <h3>3. Cycle complet de l'intégration</h3>
+    <ol>
+        <li>L'utilisateur soumet le formulaire</li>
+        <li>React récupère les valeurs et les valide via Zod</li>
+        <li>Axios envoie une requête POST au backend</li>
+        <li>Express reçoit la requête et valide à nouveau les données</li>
+        <li>MySQL insère les données avec requêtes préparées</li>
+        <li>Le serveur renvoie un JSON confirmant l’insertion</li>
+        <li>Frontend affiche un message de succès ou d'erreur</li>
+    </ol>
 
-            <h3>5. Architecture robuste</h3>
-            <p>Frontend léger, backend sécurisé.</p>
+    <h3>4. Rôle des modules</h3>
+    <ul>
+        <li><strong>React :</strong> interface utilisateur, collecte et affichage des données</li>
+        <li><strong>React Hook Form :</strong> gestion efficace des états et validation locale</li>
+        <li><strong>Zod :</strong> validation stricte et cohérente côté frontend et backend</li>
+        <li><strong>Axios :</strong> communication HTTP entre front et back</li>
+        <li><strong>Express :</strong> serveur API REST, validation et traitement métier</li>
+        <li><strong>MySQL :</strong> stockage sécurisé des données</li>
+    </ul>
 
-            <h3>6. Vision professionnelle</h3>
-            <p>Séparation claire UI / API / Data.</p>
+    <h3>5. Gestion des erreurs et bonnes pratiques</h3>
+    <ul>
+        <li>Afficher des messages clairs à l'utilisateur</li>
+        <li>Logger côté serveur sans exposer d'informations sensibles</li>
+        <li>Timeout et retry en cas de connexion lente</li>
+        <li>Ne jamais faire confiance aux données frontend, valider à chaque étape</li>
+    </ul>
 
-        </section>
+</section>
+<!-- ================= SECURITE ================= -->
 
-        <!-- ================= EXERCICE ================= -->
+<section id="security" class="section security hidden">
 
-        <section id="exercice" class="section exercice hidden">
+    <h2>Sécurité simplifiée</h2>
 
-            <h2>Exercice pratique complet</h2>
+    <h3>1. Pourquoi sécuriser</h3>
+    <p>La sécurité protège votre application et vos utilisateurs. Même si le frontend contrôle les données, le backend doit toujours vérifier pour éviter les erreurs et les attaques.</p>
 
-            <h3>Objectif</h3>
-            <p>Créer un module d’ajout de produit.</p>
+    <h3>2. Validation des données</h3>
+    <p>Vérifiez toujours les données envoyées par l’utilisateur :</p>
+    <ul>
+        <li>Frontend : retour rapide pour l’utilisateur (ex : champs obligatoires, format email)</li>
+        <li>Backend : validation obligatoire avant d’enregistrer dans la base</li>
+    </ul>
 
-            <h3>Données requises</h3>
-            <ul>
-                <li>name (min 3)</li>
-                <li>price (positif)</li>
-                <li>description (min 10)</li>
-            </ul>
+    <h3>3. Protéger les données sensibles</h3>
+    <p>Quelques règles simples :</p>
+    <ul>
+        <li>Ne jamais mettre les mots de passe ou clés secrètes dans le code visible</li>
+        <li>Utiliser un mot de passe sécurisé pour la base de données</li>
+        <li>Limiter les informations envoyées à l’utilisateur en cas d’erreur</li>
+    </ul>
 
-            <h3>Travail backend</h3>
-            <ul>
-                <li>Créer schéma Zod</li>
-                <li>Créer route POST /products</li>
-                <li>Insérer en base</li>
-            </ul>
+    <h3>4. Communiquer de manière sécurisée</h3>
+    <ul>
+        <li>Utiliser HTTPS pour chiffrer les échanges entre frontend et backend</li>
+        <li>Limiter la taille des formulaires pour éviter les surcharges</li>
+        <li>Ajouter un contrôle simple de nombre de requêtes pour éviter les abus</li>
+    </ul>
 
-            <h3>Travail frontend</h3>
-            <ul>
-                <li>Créer formulaire React Hook Form</li>
-                <li>Connecter Zod</li>
-                <li>Envoyer via Axios</li>
-            </ul>
+    <h3>5. Bonnes pratiques simples</h3>
+    <ul>
+        <li>Valider toutes les données côté backend</li>
+        <li>Utiliser des requêtes préparées pour la base (empêche l’injection SQL)</li>
+        <li>Afficher uniquement des messages génériques en cas d’erreur côté utilisateur</li>
+        <li>Logger les erreurs côté serveur pour les développeurs</li>
+    </ul>
 
-            <h3>Tests obligatoires</h3>
-            <ol>
-                <li>Nom trop court</li>
-                <li>Prix négatif</li>
-                <li>Description vide</li>
-                <li>Données manquantes</li>
-            </ol>
+</section>
 
-            <h3>Extension avancée</h3>
-            <ul>
-                <li>Afficher liste produits</li>
-                <li>Ajouter suppression</li>
-                <li>Centraliser gestion erreurs</li>
-            </ul>
+<!-- ================= EXERCICE ================= -->
 
-        </section>
+<section id="exercice" class="section exercice hidden">
 
-    </main>
+    <h2>Exercices pratiques détaillés</h2>
 
-    <script src="script.js"></script>
+    <h3>Exercice 1 – Module produit</h3>
+    <p><strong>Énoncé :</strong> Créez un module complet permettant d’ajouter des produits dans la base. Le formulaire doit contenir :</p>
+    <ul>
+        <li>Nom du produit (minimum 3 caractères)</li>
+        <li>Prix (nombre positif)</li>
+        <li>Description (minimum 10 caractères)</li>
+    </ul>
+    <p>Le backend doit valider avec Zod et insérer les données dans MySQL via requêtes préparées. Le frontend doit gérer la validation et l’affichage des erreurs.</p>
+
+    <h3>Exercice 2 – API sécurisée commandes</h3>
+    <p><strong>Énoncé :</strong> Créez une route POST /orders permettant d’enregistrer des commandes. Chaque commande doit contenir :</p>
+    <ul>
+        <li>ID utilisateur</li>
+        <li>Liste des produits commandés</li>
+        <li>Quantité par produit</li>
+        <li>Date de commande</li>
+    </ul>
+    <p>Le backend doit :</p>
+    <ul>
+        <li>Valider la structure des données avec Zod</li>
+        <li>Utiliser des requêtes préparées pour MySQL</li>
+        <li>Renvoi un code 400 si les données sont invalides</li>
+        <li>Tester différents scénarios d’erreur et succès</li>
+    </ul>
+
+    <h3>Exercice 3 – Formulaire avancé React</h3>
+    <p><strong>Énoncé :</strong> Créez un formulaire de produit avancé avec React Hook Form et Zod :</p>
+    <ul>
+        <li>Ajoutez un champ productType : gratuit ou payant</li>
+        <li>Si productType = payant, le prix doit être > 0</li>
+        <li>Validez côté frontend et backend</li>
+        <li>Affichez des messages d’erreur clairs côté frontend</li>
+        <li>Testez insertion correcte dans MySQL</li>
+    </ul>
+
+</section>
+</main>
+
+<script src="script.js"></script>
 </body>
 
 </html>
