@@ -26,7 +26,7 @@ const Header = () => {
 				<Link to="/">Home</Link>
 				<Link to="/movies">Movies</Link>
 				<span onClick={handleSearchClick}>Search</span>
-
+				{user && <Link to="/dashboard">Dashboard</Link>}
 				{!user && (
 					<Link to="/login" className="btn">
 						Login
