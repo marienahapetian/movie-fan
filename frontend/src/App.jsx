@@ -7,38 +7,31 @@ import Footer from "./components/Footer";
 import Dashboard from "./pages/Dashboard";
 import Movies from "./pages/Movies";
 import ProtectedRoute from "./components/ProtectedRoute";
-import { useEffect, useState } from "react";
+import AuthProvider from "./providers/AuthProvider";
+
 function App() {
-	const [authToken, setAuthToken] = useState(null);
-
-	useEffect(() => {
-		console.log("getting token in app.jsx");
-		const token = localStorage.getItem("token");
-		if (token) {
-			setAuthToken(token);
-		}
-	}, []);
-
 	return (
 		<>
 			<BrowserRouter>
-				<Header authToken={authToken} setAuthToken={setAuthToken} />
+				<AuthProvider>
+					<Header />
 
-				<Routes>
-					<Route path="/" element={<Home />} />
-					<Route path="/login" element={<Login setAuthToken={setAuthToken} />} />
-					<Route path="/register" element={<Register setAuthToken={setAuthToken} />} />
-					<Route
-						path="/dashboard"
-						element={
-							<ProtectedRoute>
-								<Dashboard />
-							</ProtectedRoute>
-						}
-					/>
-					<Route path="/movies" element={<Movies />} />
-				</Routes>
-				<Footer />
+					<Routes>
+						<Route path="/" element={<Home />} />
+						<Route path="/login" element={<Login />} />
+						<Route path="/register" element={<Register />} />
+						<Route
+							path="/dashboard"
+							element={
+								<ProtectedRoute>
+									<Dashboard />
+								</ProtectedRoute>
+							}
+						/>
+						<Route path="/movies" element={<Movies />} />
+					</Routes>
+					<Footer />
+				</AuthProvider>
 			</BrowserRouter>
 		</>
 	);

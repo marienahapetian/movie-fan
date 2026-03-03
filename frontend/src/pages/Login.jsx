@@ -2,8 +2,11 @@ import { useForm } from "react-hook-form";
 import "../assets/styles/Form.css";
 import { api } from "../api/axios";
 import { Link, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
-const Login = ({ setAuthToken }) => {
+import { useContext, useEffect, useState } from "react";
+import AuthContext from "../context/AuthContext";
+
+const Login = () => {
+	const { login, logout } = useContext(AuthContext);
 	const [error, setError] = useState(null);
 	const navigate = useNavigate();
 	const { register, handleSubmit } = useForm({
@@ -17,8 +20,7 @@ const Login = ({ setAuthToken }) => {
 		const token = localStorage.getItem("token");
 
 		if (token) {
-			setAuthToken(token);
-			navigate("/");
+			login(token);
 		}
 	}, []);
 
@@ -28,11 +30,9 @@ const Login = ({ setAuthToken }) => {
 			const res = await api.post("/auth/login", data);
 			console.log("aaaa", res.data);
 			if (res.data.token) {
-				localStorage.setItem("token", res.data.token);
-				setAuthToken(res.data.token);
-				navigate("/dashboard");
+				login(res.data.token);
 			} else {
-				setAuthToken(null);
+				logout();
 			}
 		} catch (error) {
 			setError("Invalid credentials");

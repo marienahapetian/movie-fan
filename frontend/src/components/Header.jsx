@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import "../assets/styles/Header.css";
 import { Link, useNavigate } from "react-router-dom";
+import AuthContext from "../context/AuthContext";
 
-const Header = ({ authToken, setAuthToken }) => {
+const Header = () => {
+	const { user, logout } = useContext(AuthContext);
 	const [searchOn, setSearchOn] = useState(false);
 	const navigate = useNavigate();
 
@@ -14,11 +16,6 @@ const Header = ({ authToken, setAuthToken }) => {
 		const query = formData.get("query");
 		alert(`You searched for '${query}'`);
 	}
-	const handleLogout = () => {
-		localStorage.removeItem("token");
-		setAuthToken(null);
-		navigate("/");
-	};
 	return (
 		<header className="header">
 			<div className="logo">
@@ -30,13 +27,13 @@ const Header = ({ authToken, setAuthToken }) => {
 				<Link to="/movies">Movies</Link>
 				<span onClick={handleSearchClick}>Search</span>
 
-				{!authToken && (
+				{!user && (
 					<Link to="/login" className="btn">
 						Login
 					</Link>
 				)}
-				{authToken && (
-					<button onClick={handleLogout} className="btn">
+				{user && (
+					<button onClick={logout} className="btn">
 						Logout
 					</button>
 				)}
