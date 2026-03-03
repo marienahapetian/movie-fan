@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import "../assets/styles/Form.css";
 import { api } from "../api/axios";
 import { Link } from "react-router-dom";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import AuthContext from "../context/AuthContext";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -14,6 +14,7 @@ const Login = () => {
 		email: z.email(),
 		password: z.string().min(6, "Password must contain at least 6 characters"),
 	});
+	const titleRef = useRef(null);
 	const {
 		register,
 		handleSubmit,
@@ -45,14 +46,17 @@ const Login = () => {
 			} else {
 				logout();
 			}
-		} catch (error) {
+		} catch (e) {
 			setError("Invalid credentials");
-			console.log("bbbb", error);
+			titleRef.current?.scrollIntoView({
+				behavior: "smooth",
+			});
+			console.log("bbbb", e);
 		}
 	}
 	return (
 		<form onSubmit={handleSubmit(onFormSubmit)} className="loginForm">
-			<h2>Log In</h2>
+			<h2 ref={titleRef}>Log In</h2>
 			{error && <span className="error">{error}</span>}
 			<div className="input-group">
 				<label>Email</label>
