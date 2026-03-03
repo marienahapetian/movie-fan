@@ -1,8 +1,10 @@
 import "../assets/styles/Dashboard.css";
+import AddMovieButton from "../components/AddMovieButton";
 function Dashboard() {
 	return (
 		<section className="dashboard">
 			<h1>Welcome Back, John 👋</h1>
+			<AddMovieButton onClick={() => console.log("Add Movie Clicked")} />
 
 			<div className="dashboard-grid">
 				<div className="card">
