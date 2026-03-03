@@ -77,4 +77,11 @@ a {
 	padding: 10px;
 	background: #a80404;
 	color: black;
+	font-weight: bold;
+}
+.error-msg {
+	color: #a80404;
+	padding: 2px 5px;
+	font-size: 0.8em;
+	font-weight: bold;
 }

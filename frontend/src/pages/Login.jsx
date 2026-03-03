@@ -1,19 +1,29 @@
 import { useForm } from "react-hook-form";
 import "../assets/styles/Form.css";
 import { api } from "../api/axios";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import AuthContext from "../context/AuthContext";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
 
 const Login = () => {
 	const { login, logout } = useContext(AuthContext);
 	const [error, setError] = useState(null);
-	const navigate = useNavigate();
-	const { register, handleSubmit } = useForm({
+	const UserSchema = z.object({
+		email: z.email(),
+		password: z.string().min(6, "Password must contain at least 6 characters"),
+	});
+	const {
+		register,
+		handleSubmit,
+		formState: { errors, isSubmitted },
+	} = useForm({
 		defaultValues: {
 			email: "",
 			password: "",
 		},
+		resolver: zodResolver(UserSchema),
 	});
 
 	useEffect(() => {
@@ -25,8 +35,9 @@ const Login = () => {
 	}, []);
 
 	async function onFormSubmit(data) {
+		console.log(data);
 		try {
-			console.log(data);
+			UserSchema.parse(data);
 			const res = await api.post("/auth/login", data);
 			console.log("aaaa", res.data);
 			if (res.data.token) {
@@ -46,10 +57,12 @@ const Login = () => {
 			<div className="input-group">
 				<label>Email</label>
 				<input type="email" {...register("email", { required: true })} placeholder="Email" />
+				{isSubmitted && errors.email && <p className="error-msg">{errors.email.message}</p>}
 			</div>
 			<div className="input-group">
 				<label>Password</label>
 				<input type="password" {...register("password", { required: true })} placeholder="Password" />
+				{isSubmitted && errors.password && <p className="error-msg">{errors.password.message}</p>}
 			</div>
 			<button type="submit">Login</button>
 			<p>
