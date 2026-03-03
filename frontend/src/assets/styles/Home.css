@@ -1,0 +1,66 @@
+/* Movie Section */
+.movies {
+	padding: 80px 8%;
+	background: #0f0f14;
+}
+
+.movies h2 {
+	font-size: 32px;
+	margin-bottom: 40px;
+	text-align: center;
+}
+
+/* Grid */
+.movie-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+	gap: 30px;
+}
+
+/* Card */
+.movie-card {
+	position: relative;
+	overflow: hidden;
+	border-radius: 12px;
+	cursor: pointer;
+	transition: 0.4s ease;
+}
+
+.movie-card img {
+	width: 100%;
+	display: block;
+	transition: 0.4s ease;
+}
+
+/* Overlay */
+.movie-overlay {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	padding: 20px;
+	background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0));
+	color: #fff;
+	transform: translateY(100%);
+	transition: 0.4s ease;
+}
+
+.movie-overlay h3 {
+	margin-bottom: 8px;
+	font-size: 18px;
+}
+
+.rating {
+	background: #3b82f6;
+	padding: 5px 10px;
+	border-radius: 20px;
+	font-size: 14px;
+}
+
+/* Hover Effects */
+.movie-card:hover img {
+	transform: scale(1.1);
+}
+
+.movie-card:hover .movie-overlay {
+	transform: translateY(0);
+}

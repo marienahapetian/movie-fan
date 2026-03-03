@@ -1,0 +1,124 @@
+/* Reset */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: "Segoe UI", sans-serif;
+}
+
+/* Body */
+body {
+	background-color: #0f0f14;
+	color: #ffffff;
+}
+
+/* Header */
+.header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 20px 8%;
+	background: #14141c;
+	border-bottom: 1px solid #222;
+}
+
+/* Logo */
+.logo {
+	font-size: 24px;
+	font-weight: 600;
+	color: #ffffff;
+	letter-spacing: 1px;
+}
+
+/* Navigation */
+.nav {
+	display: flex;
+	gap: 30px;
+	align-items: center;
+}
+
+.nav a,
+.nav .btn {
+	text-decoration: none;
+	color: #dadada;
+	font-size: 16px;
+	transition: 0.3s ease;
+	cursor: pointer;
+}
+
+/* Hover Effect */
+.nav a:hover {
+	color: #f6be3b;
+}
+.nav span {
+	cursor: pointer;
+	color: #f6be3b;
+}
+/* Button Style */
+.btn {
+	padding: 8px 18px;
+	background: #f6be3b;
+	border-radius: 6px;
+	color: black !important;
+	transition: 0.3s ease;
+	border: none;
+	cursor: pointer;
+}
+
+.btn:hover {
+	background: #ffd050;
+}
+
+/* Search form */
+/* Search Form Container */
+.search-form {
+	display: flex;
+	justify-content: right;
+	align-items: center;
+	gap: 12px;
+	max-width: 500px;
+	padding: 8px;
+	background: #14141c;
+	border-radius: 50px;
+	border: 1px solid #222;
+}
+
+/* Input */
+.search-form input {
+	flex: 1;
+	padding: 14px 20px;
+	border: none;
+	outline: none;
+	background: transparent;
+	color: #ffffff;
+	font-size: 16px;
+	border-radius: 50px;
+}
+
+/* Placeholder */
+.search-form input::placeholder {
+	color: #777;
+}
+
+/* Button */
+.search-form button {
+	padding: 12px 24px;
+	border: none;
+	border-radius: 50px;
+	background: #f6be3b;
+	color: #ffffff;
+	font-size: 15px;
+	cursor: pointer;
+	transition: 0.3s ease;
+}
+
+/* Hover Effects */
+.search-form button:hover {
+	background: #f6be3b;
+}
+
+/* Focus Glow */
+.search-form:focus-within {
+	border: 1px solid #f6be3b;
+	box-shadow: 0 0 10px rgb(246, 202, 59);
+}
