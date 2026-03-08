@@ -9,9 +9,9 @@ function Dashboard() {
 			<AddMovieButton onClick={() => navigate("/movie/add")} />
 
 			<div className="dashboard-grid">
-				<div className="card">
-					<h3>Total Watch Time</h3>
-					<p className="card-value">124 hrs</p>
+				<div className="card" onClick={() => navigate("/dashboard/movies")}>
+					<h3>Your movies</h3>
+					<p className="card-value">12</p>
 				</div>
 
 				<div className="card">

@@ -21,7 +21,7 @@ const NewMovie = () => {
 			.instanceof(FileList)
 			.refine((files) => files.length === 1, "Poster is required")
 			.transform((files) => files[0])
-			.pipe(z.file().mime(["image/png", "image/jpeg"]).max(1_000_000)),
+			.pipe(z.file().mime(["image/png", "image/jpeg"]).max(10_000_000)),
 	});
 
 	async function onFormSubmit(data) {
@@ -33,9 +33,12 @@ const NewMovie = () => {
 			formData.append("genre", parsed.genre);
 			formData.append("release", parsed.release.toISOString());
 			formData.append("poster", parsed.poster);
-			const res = await api.post("/movie/add", formData, {
+			const token = localStorage.getItem("token");
+
+			const res = await api.post("/movies/add", formData, {
 				headers: {
 					"Content-Type": "multipart/form-data",
+					Authorization: `Bearer ${token}`,
 				},
 			});
 			console.log("aaaa", res.data);

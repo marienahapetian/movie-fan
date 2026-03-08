@@ -80,6 +80,10 @@ a {
 	color: black;
 	font-weight: bold;
 }
+.success {
+	padding: 10px;
+	background: #43a804;
+}
 .error-msg {
 	color: #a80404;
 	padding: 2px 5px;
