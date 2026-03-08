@@ -1,6 +1,7 @@
 /* Form Container */
 form.loginForm,
-form.registerForm {
+form.registerForm,
+form.movieForm {
 	max-width: 420px;
 	margin: 80px auto;
 	padding: 40px;

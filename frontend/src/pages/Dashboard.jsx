@@ -1,10 +1,12 @@
+import { useNavigate } from "react-router-dom";
 import "../assets/styles/Dashboard.css";
 import AddMovieButton from "../components/AddMovieButton";
 function Dashboard() {
+	const navigate = useNavigate();
 	return (
 		<section className="dashboard">
 			<h1>Welcome Back, John 👋</h1>
-			<AddMovieButton onClick={() => console.log("Add Movie Clicked")} />
+			<AddMovieButton onClick={() => navigate("/movie/add")} />
 
 			<div className="dashboard-grid">
 				<div className="card">

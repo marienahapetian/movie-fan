@@ -9,6 +9,7 @@ import Dashboard from "./pages/Dashboard";
 import Movies from "./pages/Movies";
 import ProtectedRoute from "./components/ProtectedRoute";
 import AuthProvider from "./providers/AuthProvider";
+import NewMovie from "./pages/NewMovie";
 
 function App() {
 	return (
@@ -21,6 +22,14 @@ function App() {
 						<Route path="/" element={<Home />} />
 						<Route path="/login" element={<Login />} />
 						<Route path="/register" element={<Register />} />
+						<Route
+							path="/movie/add"
+							element={
+								<ProtectedRoute>
+									<NewMovie />
+								</ProtectedRoute>
+							}
+						/>
 						<Route
 							path="/dashboard"
 							element={
